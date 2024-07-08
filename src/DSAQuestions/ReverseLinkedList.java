@@ -1,71 +1,76 @@
-package DSAQuestions;
+package DSAQuestions;       // Defining the package for the class files
 
-class Node{
-    int data;
-    Node next;
+// Class to represent a node in the linked list
+class Node {
+    int data;       // Data part of the node
+    Node next;      // Pointer to the next node
 
-    public Node(int data){
+    // Constructor to initialize the node with data and set the next pointer to null
+    public Node(int data) {
         this.data = data;
         this.next = null;
     }
 }
 
+// Class to represent the linked list
 class LinkedList {
-    Node head;
+    Node head;      // Head of the linked list
 
-    public void add(int data){
-        Node newNode = new Node(data);
-        if(head == null){
+    // Method to add a new node with given data to the end of the linked list
+    public void add(int data) {
+        Node newNode = new Node(data);      // Creating a new node
+        if (head == null) {         // If the list is empty, set the new node as the head
             head = newNode;
-        }else{
+        } else {        // Otherwise, traverse to the end of the list and add the new node
             Node current = head;
-            while(current.next != null){
+            while (current.next != null) {      // Traverse until the last node
                 current = current.next;
             }
-            current.next = newNode;
+            current.next = newNode;         // Add the new node at the end
         }
     }
 
-    public void display(){
-        Node current = head;
-        while(current != null){
-            System.out.print(current.data + " -> ");
-            current = current.next;
+    // Method to display the elements of the linked list
+    public void display() {
+        Node current = head;        // Start from the head node
+        while (current != null) {       // Traverse the list until the end
+            System.out.print(current.data + " -> ");        // Print the data of each node
+            current = current.next;         // Move to the next node
         }
-        System.out.println("null");
+        System.out.println("null");         // Indicate the end of the list
     }
 
-    public void reverse(){
-        Node prev = null;
-        Node current = head;
-        Node next = null;
+    // Method to reverse the linked list
+    public void reverse() {
+        Node prev = null;       // Initialize previous node as null
+        Node current = head;        // Start from the head node
+        Node next = null;       // Initialize next node as null
 
-        while(current != null){
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+        while (current != null) {       // Traverse the list
+            next = current.next;        // Store the next node
+            current.next = prev;        // Reverse the link
+            prev = current;         // Move previous to the current node
+            current = next;         // Move to the next node
         }
-        head = prev;
+        head = prev;        // Set the head to the last node
     }
-
 }
 
+// Main class to test the linked list and reverse functionality
 public class ReverseLinkedList {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-        list.add(1);
+        LinkedList list = new LinkedList();         // Create a new linked list
+        list.add(1);        // Add elements to the list
         list.add(2);
         list.add(3);
         list.add(4);
         list.add(5);
 
         System.out.print("The original list is: ");
-        list.display();
+        list.display();         // Display the original list
 
-        list.reverse();
+        list.reverse();         // Reverse the linked list
         System.out.print("The reverse list is: ");
-        list.display();
-
+        list.display();         // Display the reversed list
     }
 }
